@@ -58,10 +58,10 @@ import (
 
 const (
 	xionImageFrom   = "ghcr.io/burnt-labs/xion/heighliner"
-	xionVersionFrom = "17.1.0"
-	xionImageTo     = "xion"
+	xionVersionFrom = "20.0.0"
+	xionImageTo     = "heighliner"
 	xionVersionTo   = "local"
-	xionUpgradeName = "v19"
+	xionUpgradeName = "v21"
 
 	osmosisImage   = "ghcr.io/strangelove-ventures/heighliner/osmosis"
 	osmosisVersion = "v25.2.1"
