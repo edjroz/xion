@@ -16,7 +16,7 @@ import (
 
 var _ types.QueryServer = Keeper{}
 
-func (k Keeper) WebAuthNVerifyRegister(_ context.Context, request *types.QueryWebAuthNVerifyRegisterRequest) (*types.QueryWebAuthNVerifyRegisterResponse, error) {
+func (k Keeper) WebAuthNVerifyRegister(ctx context.Context, request *types.QueryWebAuthNVerifyRegisterRequest) (*types.QueryWebAuthNVerifyRegisterResponse, error) {
 	rp, err := url.Parse(request.Rp)
 	if err != nil {
 		return nil, err
@@ -27,7 +27,8 @@ func (k Keeper) WebAuthNVerifyRegister(_ context.Context, request *types.QueryWe
 		return nil, err
 	}
 
-	credential, err := types.VerifyRegistration(rp, request.Addr, request.Challenge, data)
+	sdkCtx := sdktypes.UnwrapSDKContext(ctx) // NOTE: verify this is the same for X nodes
+	credential, err := types.VerifyRegistration(sdkCtx, rp, request.Addr, request.Challenge, data)
 	if err != nil {
 		return nil, err
 	}
